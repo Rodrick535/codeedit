@@ -1,0 +1,74 @@
+<div class="place">
+<header>Code Editor</header>
+<p></p>
+<div class="area" id="text" contenteditable></div>
+<div class="area2"><button onclick="run()">Run</button><button onclick="save()">Save</button><button onclick="load()">Load</button></div>
+<p></p>
+</div>
+<div class="area" id="code"><p>Please run some code.</p></div>
+<textarea id="text2" hidden></textarea>
+<script>
+  function run() {
+    document.getElementById("text2").value = document.getElementById("text").innerHTML
+    document.getElementById("text2").value = document.getElementById("text2").value.replace(/&lt;/g, "<")
+    document.getElementById("text2").value = document.getElementById("text2").value.replace(/&gt;/g, ">")
+    document.getElementById("code").innerHTML = document.getElementById("text2").value
+  }
+  function save() {
+    var name = prompt("Enter a name for your project that you will remember:")
+    localStorage.setItem(name, document.getElementById("text").innerHTML)
+  }
+  
+  function load() {
+    var name = prompt("Enter filename:")
+    document.getElementById("text").innerHTML = localStorage.getItem(name)
+    run()
+  }
+</script>
+
+<style>
+
+.place header {
+  font-size: 35px;
+  text-align: center;
+  font-family: calibri;
+  background: black;
+  color: white;
+}
+.place h2 {
+  text-align: center;
+  font-family: calibri;
+}
+.place p {
+  font-family: calibri;
+  text-align: center;
+}
+.area {
+  border: 3px solid black;
+  height:auto;
+  min-height:150px;
+  height:auto !important;
+  height:150px;
+  font-family: calibri;
+}
+.area2 {
+  border: 3px solid black;
+  background: black;
+}
+.place button {
+  background: black;
+  color: white;
+  border: 2px solid black;
+  font-size: 20px;
+  padding: 5px 40px;
+  transition: 0.3s;
+}
+.place button:hover {
+  background: white;
+  color: black;
+  border: 2px solid white;
+}
+.place a {
+  font-family: calibri
+  }
+</style>
