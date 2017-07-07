@@ -1,18 +1,14 @@
 <div class="place">
 <header>Code Editor</header>
 <p></p>
-<div class="area" id="text" contenteditable></div>
+<div class="area"><textarea id="text" class="main"></textarea></div>
 <div class="area2"><button onclick="run()">Run</button><button onclick="save()">Save</button><button onclick="load()">Load</button></div>
 <p></p>
 </div>
-<div class="area" id="code"><p>Please run some code.</p></div>
-<textarea id="text2" hidden></textarea>
+<div id="code" class="code"><p>Results will appear down here.</p></div>
 <script>
   function run() {
-    document.getElementById("text2").value = document.getElementById("text").innerHTML
-    document.getElementById("text2").value = document.getElementById("text2").value.replace(/&lt;/g, "<")
-    document.getElementById("text2").value = document.getElementById("text2").value.replace(/&gt;/g, ">")
-    document.getElementById("code").innerHTML = document.getElementById("text2").value
+    document.getElementById("code").innerHTML = document.getElementById("text").value
   }
   function save() {
     var name = prompt("Enter a name for your project that you will remember:")
@@ -27,7 +23,18 @@
 </script>
 
 <style>
-
+.main {
+   height: 250px;
+   width: 100%;
+   padding: 1%;
+   border: none;
+   resize: vertical;
+}
+.code {
+  min-height: 400;
+  resize: both;
+  border: 3px solid black;
+}
 .place header {
   font-size: 35px;
   text-align: center;
