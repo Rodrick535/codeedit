@@ -12,12 +12,12 @@
   }
   function save() {
     var name = prompt("Enter a name for your project that you will remember:")
-    localStorage.setItem(name, document.getElementById("text").innerHTML)
+    localStorage.setItem(name, document.getElementById("text").value)
   }
   
   function load() {
     var name = prompt("Enter filename:")
-    document.getElementById("text").innerHTML = localStorage.getItem(name)
+    document.getElementById("text").value = localStorage.getItem(name)
     run()
   }
 </script>
