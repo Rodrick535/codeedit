@@ -1,5 +1,4 @@
 <div class="place">
-  <title>Code Editor</title>
 <header>Code Editor</header>
 <p></p>
 <div class="area"><textarea id="text" class="main"></textarea></div>
@@ -23,7 +22,10 @@
     for (i = 0; i < items.length; i++) { 
     text += "<button onclick='go(\"" + items[i] + "\")'>" + items[i] + "</button>";
 }
-document.getElementById("stuff").innerHTML = "<div class='areaM'>" + text + "</div>"
+document.getElementById("stuff").innerHTML = "<div class='areaM' id='saves'>" + text + "</div>"
+  if(document.getElementById("saves").innerHTML == "") {
+    document.getElementById("saves").innerHTML = "<p>Nothing here yet...</p>"
+  }
 }
 function go(item) {
   document.getElementById("text").value = localStorage.getItem(item)
@@ -60,6 +62,7 @@ function go(item) {
 .place p {
   font-family: calibri;
   text-align: center;
+  color: white;
 }
 .area {
   border: 3px solid black;
