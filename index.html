@@ -1,10 +1,10 @@
 <div class="place">
-<title>Code Editor</title>
+  <title>Code Editor</title>
 <header>Code Editor</header>
 <p></p>
 <div class="area"><textarea id="text" class="main"></textarea></div>
 <div class="area2"><button onclick="run()">Run</button><button onclick="save()">Save</button><button onclick="load()">Load</button></div>
-<p></p>
+<p id="stuff"></p>
 </div>
 <div id="code" class="code"><p>Results will appear down here.</p></div>
 <script>
@@ -17,10 +17,19 @@
   }
   
   function load() {
-    var name = prompt("Enter filename:")
-    document.getElementById("text").value = localStorage.getItem(name)
-    run()
-  }
+    var items = Object.keys(localStorage)
+    var text = ""
+    var i;
+    for (i = 0; i < items.length; i++) { 
+    text += "<button onclick='go(\"" + items[i] + "\")'>" + items[i] + "</button>";
+}
+document.getElementById("stuff").innerHTML = "<div class='areaM'>" + text + "</div>"
+}
+function go(item) {
+  document.getElementById("text").value = localStorage.getItem(item)
+  run()
+  document.getElementById("stuff").innerHTML = ""
+}
 </script>
 
 <style>
@@ -59,6 +68,11 @@
   height:auto !important;
   height:150px;
   font-family: calibri;
+}
+.areaM {
+  border: 3px solid black;
+  text-align: left;
+  background: black;
 }
 .area2 {
   border: 3px solid black;
