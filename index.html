@@ -1,8 +1,9 @@
+<html id="htmlcode">
 <div class="place">
 <header>Code Editor</header>
 <p></p>
 <div class="area"><textarea id="text" class="main"></textarea></div>
-<div class="area2"><button onclick="run()">Run</button><button onclick="save()">Save</button><button onclick="load()">Load</button></div>
+<div class="area2"><button onclick="run()">Run</button><button onclick="save()">Save</button><button onclick="load()">Load</button><button onclick="full()">Fullscreen</button></div>
 <p id="stuff"></p>
 </div>
 <div id="code" class="code"><p>Results will appear down here.</p></div>
@@ -14,6 +15,12 @@
     var name = prompt("Enter a name for your project that you will remember:")
     localStorage.setItem(name, document.getElementById("text").value)
   }
+  function full() {
+  var check = confirm("This will replace the entire page with your code. You will not be able to get it back unless you save. Click OK to continue.")
+  if(check === true) {
+    document.getElementById("htmlcode").innerHTML = document.getElementById("text").value
+  }
+  }
   
   function load() {
     var items = Object.keys(localStorage)
@@ -22,10 +29,7 @@
     for (i = 0; i < items.length; i++) { 
     text += "<button onclick='go(\"" + items[i] + "\")'>" + items[i] + "</button>";
 }
-document.getElementById("stuff").innerHTML = "<div class='areaM' id='saves'>" + text + "</div>"
-  if(document.getElementById("saves").innerHTML == "") {
-    document.getElementById("saves").innerHTML = "<p>Nothing here yet...</p>"
-  }
+document.getElementById("stuff").innerHTML = "<div class='areaM'>" + text + "</div>"
 }
 function go(item) {
   document.getElementById("text").value = localStorage.getItem(item)
@@ -62,7 +66,6 @@ function go(item) {
 .place p {
   font-family: calibri;
   text-align: center;
-  color: white;
 }
 .area {
   border: 3px solid black;
@@ -98,3 +101,4 @@ function go(item) {
   font-family: calibri
   }
 </style>
+</html>
